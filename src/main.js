@@ -7,7 +7,6 @@ const btnSub = document.querySelector('#searchForm');
 const newsContainer = document.querySelector('.news');
 
 async function surch(query) {
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const apiKey = 'ce8f677110414806a753081c344c7117';
   const baseUrl = 'https://newsapi.org/v2/everything';
   const params = {
@@ -16,32 +15,20 @@ async function surch(query) {
     sortBy: 'relevancy',
     apiKey: apiKey,
   };
-  const url = proxyUrl + baseUrl + '?' + new URLSearchParams(params).toString();
-
+  const url = `${baseUrl}?` + new URLSearchParams(params).toString();
   try {
-    const response = await axios.get(url, {
-      headers: {
-        'x-requested-with': 'XMLHttpRequest',
-      },
-    });
-    console.log(response.data);
-
+    const response = await axios.get(url);
     iziToast.show({
-      title: 'FIND',
+      title: 'Знайдено',
       color: 'green',
-      message: `Found ${response.data.totalResults} articles`,
+      message: `${response.data.totalResults} записів про " ${query} "`,
     });
-
-    console.log(response.data.articles);
     return response.data.articles;
   } catch (error) {
     console.error('Error:', error);
-    console.error('Response error:', error.response.data);
-    console.error('Status:', error.response.status);
-    console.error('Headers:', error.response.headers);
     iziToast.error({
       title: 'Error',
-      message: error.message,
+      message: 'Something went wrong. Please try again later.',
     });
     return [];
   }
