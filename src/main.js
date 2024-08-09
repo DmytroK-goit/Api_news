@@ -32,6 +32,9 @@ async function surch(query) {
     return response.data.articles;
   } catch (error) {
     console.error('Error:', error);
+    console.error('Response error:', error.response.data);
+    console.error('Status:', error.response.status);
+    console.error('Headers:', error.response.headers);
     iziToast.error({
       title: 'Error',
       message: error.message,
