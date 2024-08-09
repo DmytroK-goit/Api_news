@@ -1,7 +1,3 @@
-// const { default: iziToast } = require('izitoast');
-// import iziToast from 'izitoast';
-// import 'izitoast/dist/css/iziToast.min.css';
-
 const inputSurch = document.querySelector('.input');
 const btnSub = document.querySelector('#searchForm');
 const newsContainer = document.querySelector('.news');
@@ -14,7 +10,6 @@ async function surch(query) {
     from: '2024-07-15',
     sortBy: 'relevancy',
     apiKey: apiKey,
-    // language: 'ru',
   };
   const url = `${baseUrl}?` + new URLSearchParams(params).toString();
   try {
@@ -22,10 +17,10 @@ async function surch(query) {
     return response.data.articles;
   } catch (error) {
     console.error('Error:', error);
-    // iziToast.error({
-    //   title: 'Error',
-    //   message: 'Something went wrong. Please try again later.',
-    // });
+    iziToast.error({
+      title: 'Error',
+      message: 'Something went wrong. Please try again later.',
+    });
     return [];
   }
 }
@@ -42,16 +37,16 @@ function renderNews(articles) {
   const markup = articles
     .map(article => {
       return `
-                        <div class="news-card">
-                            <a href="${article.url}" target="_blank">
-                                <img src="${article.urlToImage}" alt="${article.title}" width='500' />
-                            </a>
-                            <div class="image-text">
-                                <h3>${article.title}</h3>
-                                <p>${article.description}</p>
-                            </div>
-                        </div>
-                    `;
+        <div class="news-card">
+          <a href="${article.url}" target="_blank">
+            <img src="${article.urlToImage}" alt="${article.title}" width='500' />
+          </a>
+          <div class="image-text">
+            <h3>${article.title}</h3>
+            <p>${article.description}</p>
+          </div>
+        </div>
+      `;
     })
     .join('');
 
