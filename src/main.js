@@ -1,6 +1,6 @@
 // const { default: iziToast } = require('izitoast');
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+// import iziToast from 'izitoast';
+// import 'izitoast/dist/css/iziToast.min.css';
 
 const inputSurch = document.querySelector('.input');
 const btnSub = document.querySelector('#searchForm');
@@ -19,22 +19,22 @@ async function surch(query) {
   const url = `${baseUrl}?` + new URLSearchParams(params).toString();
   try {
     const response = await axios.get(url);
-    return response.data.articles; // Використовуємо response.data.articles
+    return response.data.articles;
   } catch (error) {
     console.error('Error:', error);
-    iziToast.error({
-      title: 'Error',
-      message: 'Something went wrong. Please try again later.',
-    });
-    return []; // Повертаємо пустий масив у разі помилки
+    // iziToast.error({
+    //   title: 'Error',
+    //   message: 'Something went wrong. Please try again later.',
+    // });
+    return [];
   }
 }
 
 btnSub.addEventListener('submit', async event => {
   event.preventDefault();
   const query = inputSurch.value;
-  const articles = await surch(query); // Чекаємо результат
-  renderNews(articles); // Викликаємо функцію renderNews з результатом
+  const articles = await surch(query);
+  renderNews(articles);
   console.log(query);
 });
 
@@ -55,5 +55,5 @@ function renderNews(articles) {
     })
     .join('');
 
-  newsContainer.innerHTML = markup; // Оновлюємо вміст контейнера новин
+  newsContainer.innerHTML = markup;
 }
