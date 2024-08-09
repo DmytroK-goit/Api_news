@@ -1,6 +1,6 @@
 // const { default: iziToast } = require('izitoast');
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+// import iziToast from 'izitoast';
+// import 'izitoast/dist/css/iziToast.min.css';
 
 const inputSurch = document.querySelector('.input');
 const btnSub = document.querySelector('#searchForm');
@@ -22,10 +22,10 @@ async function surch(query) {
     return response.data.articles;
   } catch (error) {
     console.error('Error:', error);
-    iziToast.error({
-      title: 'Error',
-      message: 'Something went wrong. Please try again later.',
-    });
+    // iziToast.error({
+    //   title: 'Error',
+    //   message: 'Something went wrong. Please try again later.',
+    // });
     return [];
   }
 }

@@ -36,6 +36,8 @@
   border: 1px solid black;
   display: block;
   width: calc((100% - 80px) / 5);
+  height: 500px;
+  display: block;
 }
 
 .news-card h3 {
@@ -46,6 +48,10 @@
 .news-card p {
   text-align: center;
   padding: 20px 10px;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+  height: 100%;
 }
 
 .news-card img {
