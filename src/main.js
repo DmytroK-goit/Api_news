@@ -34,7 +34,7 @@ async function surch(query) {
     console.error('Error:', error);
     iziToast.error({
       title: 'Error',
-      message: 'Something went wrong. Please try again later.',
+      message: error.message,
     });
     return [];
   }
