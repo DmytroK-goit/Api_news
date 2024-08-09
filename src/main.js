@@ -1,3 +1,7 @@
+import iziToast from 'izitoast';
+// Додатковий імпорт стилів
+import 'izitoast/dist/css/iziToast.min.css';
+
 const inputSurch = document.querySelector('.input');
 const btnSub = document.querySelector('#searchForm');
 const newsContainer = document.querySelector('.news');
@@ -16,6 +20,15 @@ async function surch(query) {
 
   try {
     const response = await axios.get(url);
+    console.log(response.data);
+
+    iziToast.show({
+      title: 'FIND',
+      color: 'green',
+      message: `Found ${response.data.totalResults} articles`,
+    });
+
+    console.log(response.data.articles);
     return response.data.articles;
   } catch (error) {
     console.error('Error:', error);
