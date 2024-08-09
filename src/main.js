@@ -3,6 +3,7 @@ const btnSub = document.querySelector('#searchForm');
 const newsContainer = document.querySelector('.news');
 
 async function surch(query) {
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const apiKey = 'ce8f677110414806a753081c344c7117';
   const baseUrl = 'https://newsapi.org/v2/everything';
   const params = {
@@ -11,7 +12,8 @@ async function surch(query) {
     sortBy: 'relevancy',
     apiKey: apiKey,
   };
-  const url = `${baseUrl}?` + new URLSearchParams(params).toString();
+  const url = proxyUrl + baseUrl + '?' + new URLSearchParams(params).toString();
+
   try {
     const response = await axios.get(url);
     return response.data.articles;
