@@ -19,7 +19,11 @@ async function surch(query) {
   const url = proxyUrl + baseUrl + '?' + new URLSearchParams(params).toString();
 
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        'x-requested-with': 'XMLHttpRequest',
+      },
+    });
     console.log(response.data);
 
     iziToast.show({
