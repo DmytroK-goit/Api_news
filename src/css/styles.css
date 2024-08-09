@@ -23,3 +23,47 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.news-card {
+  border: 1px solid black;
+  display: block;
+  width: calc((100% - 80px) / 5);
+}
+
+.news-card h3 {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.news-card p {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.news-card img {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+.input {
+  border: 2px solid black;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.input:hover {
+  border: 2px solid blue;
+}

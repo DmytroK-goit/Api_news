@@ -1,3 +1,7 @@
+// const { default: iziToast } = require('izitoast');
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 const inputSurch = document.querySelector('.input');
 const btnSub = document.querySelector('#searchForm');
 const newsContainer = document.querySelector('.news');
@@ -18,6 +22,10 @@ async function surch(query) {
     return response.data.articles; // Використовуємо response.data.articles
   } catch (error) {
     console.error('Error:', error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Something went wrong. Please try again later.',
+    });
     return []; // Повертаємо пустий масив у разі помилки
   }
 }
@@ -36,7 +44,7 @@ function renderNews(articles) {
       return `
                         <div class="news-card">
                             <a href="${article.url}" target="_blank">
-                                <img src="${article.urlToImage}" alt="${article.title}" />
+                                <img src="${article.urlToImage}" alt="${article.title}" width='500' />
                             </a>
                             <div class="image-text">
                                 <h3>${article.title}</h3>
