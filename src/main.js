@@ -1,12 +1,23 @@
 import iziToast from 'izitoast';
-// Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
+import axios from 'axios';
 
 const inputSurch = document.querySelector('.input');
 const btnSub = document.querySelector('#searchForm');
 const newsContainer = document.querySelector('.news');
 
+inputSurch.addEventListener('input', () => {
+  btnSub.disabled = inputSurch.value.trim() === '';
+});
+
 async function surch(query) {
+  if (query.trim() === '') {
+    iziToast.error({
+      title: 'Помилка',
+      message: 'Поле запиту не може бути порожнім.',
+    });
+    return [];
+  }
   const apiKey = 'ce8f677110414806a753081c344c7117';
   const baseUrl = 'https://newsapi.org/v2/everything';
   const params = {
@@ -36,6 +47,7 @@ async function surch(query) {
 
 btnSub.addEventListener('submit', async event => {
   event.preventDefault();
+
   const query = inputSurch.value;
   const articles = await surch(query);
   renderNews(articles);
