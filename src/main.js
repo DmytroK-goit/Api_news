@@ -40,7 +40,7 @@ async function surch(query) {
     console.error('Error:', error);
     iziToast.error({
       title: 'Error',
-      message: `${error.message}`,
+      message: `${error}`,
     });
     return [];
   }
