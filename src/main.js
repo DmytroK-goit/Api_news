@@ -22,10 +22,12 @@ async function surch(query) {
   const params = {
     q: query,
     from: '2024-07-15',
-    sortBy: 'relevancy',
+    sortBy: 'publishedAt',
     apiKey: apiKey,
   };
   const url = `${baseUrl}?` + new URLSearchParams(params).toString();
+  console.log(url);
+
   try {
     const response = await axios.get(url);
     iziToast.show({
@@ -38,7 +40,7 @@ async function surch(query) {
     console.error('Error:', error);
     iziToast.error({
       title: 'Error',
-      message: 'Something went wrong. Please try again later.',
+      message: `${error.ye.message}`,
     });
     return [];
   }
@@ -46,7 +48,6 @@ async function surch(query) {
 
 btnSub.addEventListener('submit', async event => {
   event.preventDefault();
-
   const query = inputSurch.value;
   const articles = await surch(query);
   renderNews(articles);
@@ -62,7 +63,7 @@ function renderNews(articles) {
             <img src="${article.urlToImage}" alt="${article.title}" width='500' />
           </a>
           <div class="image-text">
-            <h3>${article.title}</h3>
+            <h3>${article.title} ${article.publishedAt}</h3>
             <p>${article.description}</p>
           </div>
         </div>
