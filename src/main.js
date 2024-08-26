@@ -23,6 +23,8 @@ async function surch(query) {
     q: query,
     from: '2024-07-15',
     sortBy: 'publishedAt',
+    pageSize: 20,
+    page: 1,
     apiKey: apiKey,
   };
   const url = `${baseUrl}?` + new URLSearchParams(params).toString();
@@ -52,6 +54,7 @@ btnSub.addEventListener('submit', async event => {
   const articles = await surch(query);
   renderNews(articles);
   console.log(query);
+  inputSurch.value = '';
 });
 
 function renderNews(articles) {
